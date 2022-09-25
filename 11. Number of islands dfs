@@ -1,0 +1,38 @@
+class Solution {
+    public int numIslands(char[][] grid) 
+    {
+        int ans =0;
+        
+        for(int rows = 0; rows < grid.length;rows++)
+        {
+            for(int cols =0; cols<grid[0].length;cols++)
+            {
+                if(grid[rows][cols] == '1')
+                {
+                    ans++;
+                    dfs(grid , rows , cols);
+                }
+            }
+        }
+        return ans;
+    }
+    
+    private void dfs(char[][] grid , int row , int col)
+    {
+        if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] == '0')
+            return;
+        
+           grid[row][col] = '0';
+        
+           //going up
+           dfs(grid , row-1,col);
+           //going right
+           dfs(grid , row, col+1);
+           //going down
+           dfs(grid , row+1, col);
+           //going left
+           dfs(grid , row, col-1);
+        
+        return;
+    }
+}
